@@ -94,7 +94,9 @@ def move_from_gcs_to_bq(**context):
     destination_table = '{}.raw.raw'.format(env.BQ_PROJECT)
 
     for file in file_list:
-        gcs_to_bq_operator = GoogleCloudStorageToBigQueryOperator(task_id='temp', bucket=env.GCS_BUCKET,
+        gcs_to_bq_operator = GoogleCloudStorageToBigQueryOperator(task_id='temp',
+                                                                  bigquery_conn_id='google_cloud_default',
+                                                                  bucket=env.GCS_BUCKET,
                                                                   source_objects=[file],
                                                                   destination_project_dataset_table=destination_table,
                                                                   write_disposition='WRITE_APPEND',
