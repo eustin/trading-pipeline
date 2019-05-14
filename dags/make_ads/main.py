@@ -1,16 +1,14 @@
 
 import os
 from datetime import datetime, timedelta
-import logging
 
 from airflow import DAG
 from airflow.contrib.operators.bigquery_operator import BigQueryOperator
-from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 
-import make_ads.config as config
+from dags.make_ads import config
 import env as env
-dag_root = '~/github/mt4-data-pipeline/dags/make_ads'
+dag_root = '~/github/mt4_data_pipeline/dags/make_ads'
 dag_root = os.path.expanduser(dag_root)
 
 default_args = {
